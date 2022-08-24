@@ -26,7 +26,7 @@ function buildCharts(sample) {
 
 
     // 3. Create a variable that holds the washing frequency.
-    var washingFrequency = 
+    var washingFrequency = parseFloat(firstSamples.wfreq)
    
     // Create the yticks for the bar chart.
 
@@ -40,7 +40,7 @@ function buildCharts(sample) {
     // 4. Create the trace for the gauge chart.
     var gaugeData = [{
       domain: { x: [0, 1], y: [0, 1] },
-      value: 10,
+      value: washingFrequency,
       type: "indicator",
       mode: "gauge+number",
       title: { text: "Bellybutton Washing Frequency", font: { size: 20 } },
@@ -55,7 +55,11 @@ function buildCharts(sample) {
 
       
       
-    }];
+        ],
+      }
+    }
+  ];
+
            
     
     
@@ -68,7 +72,7 @@ function buildCharts(sample) {
       font: { color: "darkblue", family: "Arial" }
 }; 
      
-    };
+    
 
     // 6. Use Plotly to plot the gauge data and layout.
     Plotly.newPlot("gauge", gaugeData, gaugeLayout);

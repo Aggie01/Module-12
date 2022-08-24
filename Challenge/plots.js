@@ -71,6 +71,7 @@ var samples_array = data.samples
     var otu_ids = firstSamples.otu_ids
     var otu_labels = firstSamples.otu_labels
     var sample_values = firstSamples.sample_values
+    var washingFrequency = parseFloat(firstSamples.wfreq)
 
 
     // 7. Create the yticks for the bar chart.
@@ -129,6 +130,49 @@ var bubbleLayout = {
   
 // 3. Use Plotly to plot the data with the layout.
 Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+
+
+
+
+// 4. Create the trace for the gauge chart.
+var gaugeData = [{
+  domain: { x: [0, 1], y: [0, 1] },
+  value: washingFrequency,
+  type: "indicator",
+  mode: "gauge+number",
+  title: { text: "Bellybutton Washing Frequency", font: { size: 20 } },
+  gauge: {
+    axis: { range: [null, 10] },
+    steps: [
+      { range: [0, 2], color: "red" },
+      { range: [2, 4], color: "orange" },
+      { range: [4, 6], color: "yellow" },
+      { range: [6, 8], color: "lightgreen" },
+      { range: [8, 10], color: "green" }
+
+  
+  
+    ],
+  }
+}
+];
+
+       
+
+
+// 5. Create the layout for the gauge chart.
+var gaugeLayout = {
+  width: 300,
+  height: 300,
+  margin: { t: 25, r: 25, l: 25, b: 25 },
+  paper_bgcolor: "lavender",
+  font: { color: "darkblue", family: "Arial" }
+}; 
+ 
+
+
+// 6. Use Plotly to plot the gauge data and layout.
+Plotly.newPlot("gauge", gaugeData, gaugeLayout);
 });
 }
 
